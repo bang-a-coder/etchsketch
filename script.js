@@ -1,33 +1,76 @@
 const parent = document.createElement('div')
-parent.setAttribute('style', 'background-color: lightblue; width: 500px; height: 500px; margin: auto; display: flex;flex-direction: row;flex-wrap: wrap;justify-content: flex-start;align-items: stretch;align-content: center;');    
+parent.classList.add('parent')    
 
 const inputDaddy = document.createElement('div')
-inputDaddy.setAttribute('style', 'background-color: green; width: 300px; height: 100px; margin: auto; display: flex;flex-direction: row;flex-wrap: wrap;justify-content: flex-start;align-items: stretch;align-content: center;');    
-
+  inputDaddy.classList.add('input_daddy')
 document.body.appendChild(inputDaddy)
 
+document.body.style.backgroundColor = "#f7f7f7";
+
 let btnDelete = document.createElement("button");
-  btnDelete.setAttribute('style', 'width: 100px; height: 30px;  margin: auto;');    
+  btnDelete.classList.add('button_main')
   btnDelete.setAttribute('content', 'clear');
-  btnDelete.innerHTML = 'Clean & Set'
+  btnDelete.innerHTML = 'Clean'
+  btnDelete.addEventListener('mouseenter', e => { // Hover Property
+    btnDelete.style.background = `linear-gradient(145deg, #dedede, #ffffff)`
+    }
+  )
+
+  btnDelete.addEventListener('mouseleave', e => { // Hover Property
+    btnDelete.style.background = `transparent  `
+    }
+  )
   btnDelete.onclick = function deleteDivs() {
     parent.innerHTML = '';
-    let tableside = prompt("how big is you pp", "69");
-    for (i = 1; i <= tableside ** 2; i++){
-      createBlock(tableside)
-    }
   }
 
 inputDaddy.appendChild(btnDelete)
 
-function createBlock(tableside){
+let numInput = document.createElement("INPUT");
+numInput.setAttribute("type", "number");
+numInput.classList.add('num_input')
+inputDaddy.appendChild(numInput)
+
+let btnSet = document.createElement("button")
+  btnSet.classList.add('button_main') 
+  btnSet.innerHTML = 'Create'
+  btnSet.addEventListener('mouseenter', e => { // Hover Property
+    btnSet.style.background = `linear-gradient(145deg, #dedede, #ffffff)`
+    }
+  )
+  btnSet.addEventListener('mouseleave', e => { // Hover Property
+    btnSet.style.background = `transparent  `
+    }
+  )
+
+  btnSet.addEventListener("click",  () => { clearAndSave(numInput.value) })
+
+inputDaddy.appendChild(btnSet)
+
+window.addEventListener('keydown', (key) => { 
+  console.log(key.key)
+  if (key.key === 'Enter' ) {
+    
+    clearAndSave(numInput.value)
+  }
+});
+
+function clearAndSave(ts) {
+  console.log(ts)
+  parent.innerHTML = '';
+  for (i = 1; i <= ts ** 2; i++){
+    createBlock(ts)
+  }
+}
+
+function createBlock(ts){ // Main Funtion that creates each div "pixel"
   let block = document.createElement('div')
   block.classList.add("divblock");
 
-  let divsize = 500 / tableside
+  let divsize = 500 / ts
 
-  block.setAttribute('style', `background: red; width: ${divsize.toString() + 'px'}; height: ${divsize.toString() + 'px'};`)
-  block.addEventListener('mouseenter', e => {
+  block.setAttribute('style', `width: ${divsize.toString() + 'px'}; height: ${divsize.toString() + 'px'};`)
+  block.addEventListener('mouseenter', e => { // Hover Property
     block.style.background = `gray`
     }
   )  
