@@ -1,6 +1,7 @@
 const parent = document.createElement('div')
 parent.classList.add('parent')    
 
+
 const inputDaddy = document.createElement('div')
   inputDaddy.classList.add('input_daddy')
 document.body.appendChild(inputDaddy)
@@ -63,6 +64,22 @@ function clearAndSave(ts) {
   }
 }
 
+let color = 'gray'
+
+let colors = document.getElementsByClassName("color_option");
+
+
+for(i = 0; i < colors.length;i++) {
+  colors[i].addEventListener('click', function(){
+    color = this.id
+    console.log(e,this.id)
+  });
+}
+
+function returnId(clicked_id) {
+  alert(clicked_id)
+}
+
 function createBlock(ts){ // Main Funtion that creates each div "pixel"
   let block = document.createElement('div')
   block.classList.add("divblock");
@@ -71,7 +88,7 @@ function createBlock(ts){ // Main Funtion that creates each div "pixel"
 
   block.setAttribute('style', `width: ${divsize.toString() + 'px'}; height: ${divsize.toString() + 'px'};`)
   block.addEventListener('mouseenter', e => { // Hover Property
-    block.style.background = `gray`
+    block.style.background = color
     }
   )  
 
@@ -79,4 +96,6 @@ function createBlock(ts){ // Main Funtion that creates each div "pixel"
 
 }
 
-document.body.appendChild(parent)
+document.body.appendChild(parent) 
+
+
